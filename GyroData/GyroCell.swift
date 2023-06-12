@@ -42,7 +42,7 @@ class GyroCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        configureView()
+        configureViewUI()
     }
     
     required init?(coder: NSCoder) {
@@ -58,7 +58,7 @@ class GyroCell: UITableViewCell {
 
 // MARK: UI
 extension GyroCell {
-    private func configureView() {
+    private func configureViewUI() {
         let infoStackView = UIStackView(arrangedSubviews: [dateLabel, motionTypeLabel])
         
         infoStackView.translatesAutoresizingMaskIntoConstraints = false

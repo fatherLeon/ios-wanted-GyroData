@@ -20,23 +20,23 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar()
-        configureView()
+        configureNavigationBarUI()
+        configureViewUI()
     }
 }
 
 // MARK: UI
 extension MainViewController {
-    private func configureNavigationBar() {
+    private func configureNavigationBarUI() {
         navigationItem.title = "목록"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "측정", style: .plain, target: self, action: nil)
     }
     
-    private func configureView() {
+    private func configureViewUI() {
         view.backgroundColor = .systemBackground
     }
     
-    private func configureTableView() {
+    private func configureTableViewUI() {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
