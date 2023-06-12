@@ -86,6 +86,8 @@ extension MainViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        tableView.separatorStyle = .none
     }
 }
 

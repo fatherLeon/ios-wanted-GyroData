@@ -75,10 +75,10 @@ extension GyroCell {
         contentView.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
-            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
-            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 }
