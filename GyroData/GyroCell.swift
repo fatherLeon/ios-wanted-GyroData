@@ -50,7 +50,7 @@ class GyroCell: UITableViewCell {
     }
     
     func apply(by date: Date, type: String, data: Double) {
-        dateLabel.text = date.description
+        dateLabel.text = date.cellText
         motionTypeLabel.text = type
         valueLabel.text = String(format: "%.1f", data)
     }
