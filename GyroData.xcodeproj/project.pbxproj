@@ -43,6 +43,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26BDBF9C2A3735F500385C5F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				63F01BBF28D44FC500C53A39 /* LaunchScreen.storyboard */,
+				63F01BBD28D44FC500C53A39 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		26BDBF9E2A37362C00385C5F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				26BDBF962A37346A00385C5F /* GyroType.swift */,
+				26BDBF982A37347100385C5F /* Gyro.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		26BDBF9F2A37367800385C5F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				26BDBF9A2A37352D00385C5F /* Date++Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		26BDBFA02A37368B00385C5F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				63F01BB428D44FC400C53A39 /* AppDelegate.swift */,
+				63F01BB628D44FC400C53A39 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		26BDBFA12A3736A900385C5F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		26BDBFA22A3736AF00385C5F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				26BDBFA32A3736B900385C5F /* MainScene */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		26BDBFA32A3736B900385C5F /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				26BDBFA52A3736C600385C5F /* ViewModel */,
+				26BDBFA42A3736BF00385C5F /* View */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		26BDBFA42A3736BF00385C5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63F01BB828D44FC400C53A39 /* MainViewController.swift */,
+				260056B32A36EF1700CFF9D0 /* GyroCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		26BDBFA52A3736C600385C5F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		63F01BA828D44FC400C53A39 = {
 			isa = PBXGroup;
 			children = (
@@ -62,16 +137,13 @@
 		63F01BB328D44FC400C53A39 /* GyroData */ = {
 			isa = PBXGroup;
 			children = (
-				63F01BB428D44FC400C53A39 /* AppDelegate.swift */,
-				63F01BB628D44FC400C53A39 /* SceneDelegate.swift */,
-				63F01BB828D44FC400C53A39 /* MainViewController.swift */,
-				63F01BBD28D44FC500C53A39 /* Assets.xcassets */,
-				63F01BBF28D44FC500C53A39 /* LaunchScreen.storyboard */,
+				26BDBFA22A3736AF00385C5F /* Presentation */,
+				26BDBFA12A3736A900385C5F /* Domain */,
+				26BDBF9E2A37362C00385C5F /* Entities */,
+				26BDBF9F2A37367800385C5F /* Utility */,
+				26BDBFA02A37368B00385C5F /* Application */,
+				26BDBF9C2A3735F500385C5F /* Resource */,
 				63F01BC228D44FC500C53A39 /* Info.plist */,
-				260056B32A36EF1700CFF9D0 /* GyroCell.swift */,
-				26BDBF962A37346A00385C5F /* GyroType.swift */,
-				26BDBF982A37347100385C5F /* Gyro.swift */,
-				26BDBF9A2A37352D00385C5F /* Date++Extension.swift */,
 			);
 			path = GyroData;
 			sourceTree = "<group>";
