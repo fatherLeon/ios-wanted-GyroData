@@ -49,10 +49,10 @@ class GyroCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func apply(by date: Date, type: String, data: String) {
+    func apply(by date: Date, type: String, data: Double) {
         dateLabel.text = date.description
         motionTypeLabel.text = type
-        valueLabel.text = data
+        valueLabel.text = String(format: "%.1f", data)
     }
 }
 
@@ -68,6 +68,7 @@ extension GyroCell {
         let mainStackView = UIStackView(arrangedSubviews: [infoStackView, valueLabel])
         
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.distribution = .equalSpacing
         mainStackView.spacing = 50
         mainStackView.axis = .horizontal
         

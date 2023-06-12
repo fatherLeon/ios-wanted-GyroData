@@ -12,8 +12,8 @@ class MainViewController: UIViewController {
         case main
     }
     
-    private var datasource: UITableViewDiffableDataSource<Section, UUID>?
-    private var snapshot = NSDiffableDataSourceSnapshot<Section, UUID>()
+    private var datasource: UITableViewDiffableDataSource<Section, Gyro>?
+    private var snapshot = NSDiffableDataSourceSnapshot<Section, Gyro>()
     
     private var tableView: UITableView = {
         let tableView = UITableView()
@@ -33,7 +33,9 @@ class MainViewController: UIViewController {
         configureTableViewDatasource()
         
         snapshot.appendSections([.main])
-        snapshot.appendItems([UUID(), UUID(), UUID()])
+        snapshot.appendItems([Gyro(date: Date(), type: .Accelerometer, value: 43.4),
+                              Gyro(date: Date(), type: .Gyro, value: 60.0),
+                              Gyro(date: Date(), type: .Accelerometer, value: 30.4)])
         
         datasource?.apply(snapshot)
     }
@@ -46,9 +48,11 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController {
     private func configureTableViewDatasource() {
         datasource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: GyroCell.identifier) as? GyroCell else { return nil }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: GyroCell.identifier) as? GyroCell else { return UITableViewCell() }
             
-            cell.apply(by: Date(), type: "abc", data: "abc")
+            cell.apply(by: itemIdentifier.date,
+                       type: itemIdentifier.type.text,
+                       data: itemIdentifier.value)
             
             return cell
         })
