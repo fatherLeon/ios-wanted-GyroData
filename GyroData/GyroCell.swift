@@ -48,6 +48,12 @@ class GyroCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func apply(by date: Date, type: String, data: String) {
+        dateLabel.text = date.description
+        motionTypeLabel.text = type
+        valueLabel.text = data
+    }
 }
 
 // MARK: UI
