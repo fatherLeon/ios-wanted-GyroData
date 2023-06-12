@@ -28,12 +28,23 @@ class MainViewController: UIViewController {
 // MARK: UI
 extension MainViewController {
     private func configureNavigationBar() {
-        self.navigationItem.title = "목록"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "측정", style: .plain, target: self, action: nil)
+        navigationItem.title = "목록"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "측정", style: .plain, target: self, action: nil)
     }
     
     private func configureView() {
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func configureTableView() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 
