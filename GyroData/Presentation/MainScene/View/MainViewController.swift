@@ -31,20 +31,37 @@ class MainViewController: UIViewController {
         configureTableViewUI()
         configureTableView()
         configureTableViewDatasource()
+        configureSnapshot()
         
-        snapshot.appendSections([.main])
-        snapshot.appendItems([Gyro(date: Date(), type: .Accelerometer, value: 43.4),
-                              Gyro(date: Date(), type: .Gyro, value: 60.0),
-                              Gyro(date: Date(), type: .Accelerometer, value: 30.4)])
+        
+        let data = [Gyro(date: Date(), type: .Accelerometer, value: 43.4),
+                    Gyro(date: Date(), type: .Gyro, value: 60.0),
+                    Gyro(date: Date(), type: .Accelerometer, value: 30.4)]
+        
+        applySnapshot(by: data)
+    }
+    
+    private func applySnapshot(by items: [Gyro]) {
+        items.forEach { gyro in
+            if snapshot.itemIdentifiers.contains(gyro) {
+                return
+            } else {
+                applySnapshot(by: gyro)
+            }
+        }
         
         datasource?.apply(snapshot)
+    }
+    
+    private func applySnapshot(by item: Gyro) {
+        snapshot.appendItems([item])
     }
 }
 
 extension MainViewController: UITableViewDelegate {
 }
 
-// MARK: Datasource
+// MARK: Datasource && Snapshot
 extension MainViewController {
     private func configureTableViewDatasource() {
         datasource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
@@ -63,6 +80,10 @@ extension MainViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.register(GyroCell.self, forCellReuseIdentifier: GyroCell.identifier)
+    }
+    
+    private func configureSnapshot() {
+        snapshot.appendSections([.main])
     }
 }
 
