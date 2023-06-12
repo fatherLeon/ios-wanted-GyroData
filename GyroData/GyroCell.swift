@@ -41,10 +41,37 @@ class GyroCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        configureView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: UI
+extension GyroCell {
+    private func configureView() {
+        let infoStackView = UIStackView(arrangedSubviews: [dateLabel, motionTypeLabel])
+        
+        infoStackView.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.axis = .vertical
+        infoStackView.spacing = 8
+        
+        let mainStackView = UIStackView(arrangedSubviews: [infoStackView, dateLabel])
+        
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.axis = .horizontal
+        mainStackView.spacing = 8
+        
+        contentView.addSubview(mainStackView)
+        
+        NSLayoutConstraint.activate([
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
 }
