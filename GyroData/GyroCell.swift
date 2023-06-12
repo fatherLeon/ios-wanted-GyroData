@@ -15,7 +15,7 @@ class GyroCell: UITableViewCell {
        let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .italicSystemFont(ofSize: 12)
+        label.font = .preferredFont(forTextStyle: .caption2)
         label.numberOfLines = 1
         
         return label
@@ -24,7 +24,7 @@ class GyroCell: UITableViewCell {
        let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .italicSystemFont(ofSize: 18)
+        label.font = .preferredFont(forTextStyle: .title1)
         label.numberOfLines = 1
         
         return label
@@ -33,7 +33,7 @@ class GyroCell: UITableViewCell {
        let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .italicSystemFont(ofSize: 24)
+        label.font = .preferredFont(forTextStyle: .largeTitle)
         label.numberOfLines = 1
         
         return label
@@ -62,22 +62,22 @@ extension GyroCell {
         let infoStackView = UIStackView(arrangedSubviews: [dateLabel, motionTypeLabel])
         
         infoStackView.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.spacing = 20
         infoStackView.axis = .vertical
-        infoStackView.spacing = 8
         
-        let mainStackView = UIStackView(arrangedSubviews: [infoStackView, dateLabel])
+        let mainStackView = UIStackView(arrangedSubviews: [infoStackView, valueLabel])
         
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.spacing = 50
         mainStackView.axis = .horizontal
-        mainStackView.spacing = 8
         
         contentView.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }

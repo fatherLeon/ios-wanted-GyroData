@@ -8,6 +8,12 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    private enum Section {
+        case main
+    }
+    
+    private var datasource: UITableViewDiffableDataSource<Section, UUID>?
+    private var snapshot = NSDiffableDataSourceSnapshot<Section, UUID>()
     
     private var tableView: UITableView = {
         let tableView = UITableView()
@@ -22,6 +28,37 @@ class MainViewController: UIViewController {
         
         configureNavigationBarUI()
         configureViewUI()
+        configureTableViewUI()
+        configureTableView()
+        configureTableViewDatasource()
+        
+        snapshot.appendSections([.main])
+        snapshot.appendItems([UUID(), UUID(), UUID()])
+        
+        datasource?.apply(snapshot)
+    }
+}
+
+extension MainViewController: UITableViewDelegate {
+}
+
+// MARK: Datasource
+extension MainViewController {
+    private func configureTableViewDatasource() {
+        datasource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: GyroCell.identifier) as? GyroCell else { return nil }
+            
+            cell.apply(by: Date(), type: "abc", data: "abc")
+            
+            return cell
+        })
+        
+        tableView.dataSource = datasource
+    }
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.register(GyroCell.self, forCellReuseIdentifier: GyroCell.identifier)
     }
 }
 
