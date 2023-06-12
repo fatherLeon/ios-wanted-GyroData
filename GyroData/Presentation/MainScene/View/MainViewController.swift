@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     
     private var datasource: UITableViewDiffableDataSource<Section, Gyro>?
     private var snapshot = NSDiffableDataSourceSnapshot<Section, Gyro>()
+    private let viewModel = MainViewModel()
     
     private var tableView: UITableView = {
         let tableView = UITableView()
@@ -33,12 +34,17 @@ class MainViewController: UIViewController {
         configureTableViewDatasource()
         configureSnapshot()
         
-        
-        let data = [Gyro(date: Date(), type: .Accelerometer, value: 43.4),
-                    Gyro(date: Date(), type: .Gyro, value: 60.0),
-                    Gyro(date: Date(), type: .Accelerometer, value: 30.4)]
-        
-        applySnapshot(by: data)
+        binding()
+    }
+    
+    private func binding() {
+        viewModel.gyros
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] gyros in
+                guard let self = self else { return }
+                self.applySnapshot(by: gyros)
+            }
+            .store(in: &viewModel.cancellables)
     }
     
     private func applySnapshot(by items: [Gyro]) {
