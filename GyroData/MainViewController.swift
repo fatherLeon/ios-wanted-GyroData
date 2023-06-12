@@ -8,6 +8,14 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    private var tableView: UITableView = {
+        let tableView = UITableView()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
