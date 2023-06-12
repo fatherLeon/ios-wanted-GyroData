@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  GyroData
 //
 //  Created by kjs on 2022/09/16.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: UI
-extension ViewController {
+extension MainViewController {
     private func configureNavigationBar() {
         self.navigationItem.title = "목록"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "측정", style: .plain, target: self, action: nil)
