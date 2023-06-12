@@ -62,9 +62,29 @@ class MainViewController: UIViewController {
     private func applySnapshot(by item: Gyro) {
         snapshot.appendItems([item])
     }
+    
+    @objc private func pushMeasurementViewController() {
+    }
+    
+    @objc private func pushPlayGraphViewController() {
+    }
 }
 
 extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let playingAction = UIContextualAction(style: .normal, title: "Play") { [weak self]  action, view, completion in
+            self?.pushPlayGraphViewController()
+            completion(true)
+        }
+        playingAction.backgroundColor = .systemGreen
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completion in
+            completion(true)
+        }
+        deleteAction.backgroundColor = .systemRed
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, playingAction])
+    }
 }
 
 // MARK: Datasource && Snapshot
@@ -97,7 +117,7 @@ extension MainViewController {
 extension MainViewController {
     private func configureNavigationBarUI() {
         navigationItem.title = "목록"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "측정", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "측정", style: .plain, target: self, action: #selector(pushMeasurementViewController))
     }
     
     private func configureViewUI() {

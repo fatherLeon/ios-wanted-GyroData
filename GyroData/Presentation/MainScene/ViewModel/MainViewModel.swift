@@ -19,4 +19,7 @@ class MainViewModel {
         
         gyros.send(data)
     }
+    
+    func deleteGyro(_ gyro: Gyro) {
+    }
 }
