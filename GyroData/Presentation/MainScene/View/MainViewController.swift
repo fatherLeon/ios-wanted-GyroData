@@ -56,6 +56,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func pushMeasurementViewController() {
+        navigationController?.pushViewController(MeasurementViewController(), animated: true)
     }
     
     @objc private func pushPlayGraphViewController() {
