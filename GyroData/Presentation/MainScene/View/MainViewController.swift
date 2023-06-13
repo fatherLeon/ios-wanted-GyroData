@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
     }
     
     private func binding() {
-        viewModel.gyros
+        viewModel.$gyros
             .receive(on: DispatchQueue.main)
             .sink { [weak self] gyros in
                 guard let self = self else { return }
@@ -48,19 +48,11 @@ class MainViewController: UIViewController {
     }
     
     private func applySnapshot(by items: [Gyro]) {
-        items.forEach { gyro in
-            if snapshot.itemIdentifiers.contains(gyro) {
-                return
-            } else {
-                applySnapshot(by: gyro)
-            }
-        }
+        snapshot.deleteSections([.main])
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items)
         
         datasource?.apply(snapshot)
-    }
-    
-    private func applySnapshot(by item: Gyro) {
-        snapshot.appendItems([item])
     }
     
     @objc private func pushMeasurementViewController() {
@@ -72,6 +64,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let gyro = viewModel.gyros[indexPath.row]
         let playingAction = UIContextualAction(style: .normal, title: "Play") { [weak self]  action, view, completion in
             self?.pushPlayGraphViewController()
             completion(true)
@@ -79,6 +72,7 @@ extension MainViewController: UITableViewDelegate {
         playingAction.backgroundColor = .systemGreen
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completion in
+            self?.viewModel.deleteGyro(gyro)
             completion(true)
         }
         deleteAction.backgroundColor = .systemRed

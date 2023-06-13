@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 class MainViewModel {
-    var gyros = CurrentValueSubject<[Gyro], Never>([])
+    @Published var gyros: [Gyro] = []
     var cancellables: [AnyCancellable] = []
     
     init() {
@@ -17,9 +17,12 @@ class MainViewModel {
                     Gyro(date: Date(), type: .Gyro, value: 60.0),
                     Gyro(date: Date(), type: .Accelerometer, value: 30.4)]
         
-        gyros.send(data)
+        self.gyros = data
     }
     
     func deleteGyro(_ gyro: Gyro) {
+        guard let index = gyros.firstIndex(of: gyro) else { return }
+        
+        gyros.remove(at: index)
     }
 }
