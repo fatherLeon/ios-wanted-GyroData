@@ -12,6 +12,8 @@
 		26BDBF992A37347100385C5F /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDBF982A37347100385C5F /* Gyro.swift */; };
 		26BDBF9B2A37352D00385C5F /* Date++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDBF9A2A37352D00385C5F /* Date++Extension.swift */; };
 		26BDBFA72A3738F400385C5F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDBFA62A3738F400385C5F /* MainViewModel.swift */; };
+		26FDAF6D2A384A1300B1F37D /* MeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDAF6C2A384A1300B1F37D /* MeasurementViewController.swift */; };
+		26FDAF6F2A384AC500B1F37D /* MeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDAF6E2A384AC500B1F37D /* MeasurementViewModel.swift */; };
 		63F01BB528D44FC400C53A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F01BB428D44FC400C53A39 /* AppDelegate.swift */; };
 		63F01BB728D44FC400C53A39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F01BB628D44FC400C53A39 /* SceneDelegate.swift */; };
 		63F01BB928D44FC400C53A39 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F01BB828D44FC400C53A39 /* MainViewController.swift */; };
@@ -25,6 +27,8 @@
 		26BDBF982A37347100385C5F /* Gyro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 		26BDBF9A2A37352D00385C5F /* Date++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date++Extension.swift"; sourceTree = "<group>"; };
 		26BDBFA62A3738F400385C5F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		26FDAF6C2A384A1300B1F37D /* MeasurementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementViewController.swift; sourceTree = "<group>"; };
+		26FDAF6E2A384AC500B1F37D /* MeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementViewModel.swift; sourceTree = "<group>"; };
 		63F01BB128D44FC400C53A39 /* GyroData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GyroData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F01BB428D44FC400C53A39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63F01BB628D44FC400C53A39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		26BDBFA22A3736AF00385C5F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				26FDAF692A38497E00B1F37D /* MeasurementScene */,
 				26BDBFA32A3736B900385C5F /* MainScene */,
 			);
 			path = Presentation;
@@ -119,6 +124,31 @@
 				26BDBFA62A3738F400385C5F /* MainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		26FDAF692A38497E00B1F37D /* MeasurementScene */ = {
+			isa = PBXGroup;
+			children = (
+				26FDAF6A2A3849F000B1F37D /* ViewModel */,
+				26FDAF6B2A3849F600B1F37D /* View */,
+			);
+			path = MeasurementScene;
+			sourceTree = "<group>";
+		};
+		26FDAF6A2A3849F000B1F37D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26FDAF6E2A384AC500B1F37D /* MeasurementViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		26FDAF6B2A3849F600B1F37D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26FDAF6C2A384A1300B1F37D /* MeasurementViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		63F01BA828D44FC400C53A39 = {
@@ -223,12 +253,14 @@
 			files = (
 				26BDBF972A37346A00385C5F /* GyroType.swift in Sources */,
 				63F01BB928D44FC400C53A39 /* MainViewController.swift in Sources */,
+				26FDAF6D2A384A1300B1F37D /* MeasurementViewController.swift in Sources */,
 				63F01BB528D44FC400C53A39 /* AppDelegate.swift in Sources */,
 				260056B42A36EF1700CFF9D0 /* GyroCell.swift in Sources */,
 				26BDBF9B2A37352D00385C5F /* Date++Extension.swift in Sources */,
 				26BDBF992A37347100385C5F /* Gyro.swift in Sources */,
 				63F01BB728D44FC400C53A39 /* SceneDelegate.swift in Sources */,
 				26BDBFA72A3738F400385C5F /* MainViewModel.swift in Sources */,
+				26FDAF6F2A384AC500B1F37D /* MeasurementViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

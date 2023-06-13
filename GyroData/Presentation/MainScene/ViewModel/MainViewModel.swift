@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class MainViewModel {
+final class MainViewModel {
     @Published var gyros: [Gyro] = []
     var cancellables: [AnyCancellable] = []
     

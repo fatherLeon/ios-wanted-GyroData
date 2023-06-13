@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GyroCell: UITableViewCell {
+final class GyroCell: UITableViewCell {
     
     static let identifier = "GyroCell"
     
