@@ -34,6 +34,8 @@ final class MeasurementViewController: UIViewController {
         
         return button
     }()
+    
+    private let viewModel = MeasurementViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

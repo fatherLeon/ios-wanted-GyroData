@@ -8,5 +8,9 @@
 import Foundation
 
 final class MeasurementViewModel {
+    private let gyroManager = GyroManager()
     
+    init() {
+        gyroManager.startAccelerometers()
+    }
 }

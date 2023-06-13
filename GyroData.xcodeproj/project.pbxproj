@@ -15,6 +15,7 @@
 		26FDAF6D2A384A1300B1F37D /* MeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDAF6C2A384A1300B1F37D /* MeasurementViewController.swift */; };
 		26FDAF6F2A384AC500B1F37D /* MeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDAF6E2A384AC500B1F37D /* MeasurementViewModel.swift */; };
 		26FDAF732A38546000B1F37D /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDAF722A38546000B1F37D /* GraphView.swift */; };
+		26FDAF752A385C6A00B1F37D /* GyroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDAF742A385C6A00B1F37D /* GyroManager.swift */; };
 		63F01BB528D44FC400C53A39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F01BB428D44FC400C53A39 /* AppDelegate.swift */; };
 		63F01BB728D44FC400C53A39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F01BB628D44FC400C53A39 /* SceneDelegate.swift */; };
 		63F01BB928D44FC400C53A39 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F01BB828D44FC400C53A39 /* MainViewController.swift */; };
@@ -31,6 +32,7 @@
 		26FDAF6C2A384A1300B1F37D /* MeasurementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementViewController.swift; sourceTree = "<group>"; };
 		26FDAF6E2A384AC500B1F37D /* MeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementViewModel.swift; sourceTree = "<group>"; };
 		26FDAF722A38546000B1F37D /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		26FDAF742A385C6A00B1F37D /* GyroManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroManager.swift; sourceTree = "<group>"; };
 		63F01BB128D44FC400C53A39 /* GyroData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GyroData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F01BB428D44FC400C53A39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63F01BB628D44FC400C53A39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		26BDBFA12A3736A900385C5F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				26FDAF742A385C6A00B1F37D /* GyroManager.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				63F01BB928D44FC400C53A39 /* MainViewController.swift in Sources */,
 				26FDAF6D2A384A1300B1F37D /* MeasurementViewController.swift in Sources */,
 				26FDAF732A38546000B1F37D /* GraphView.swift in Sources */,
+				26FDAF752A385C6A00B1F37D /* GyroManager.swift in Sources */,
 				63F01BB528D44FC400C53A39 /* AppDelegate.swift in Sources */,
 				260056B42A36EF1700CFF9D0 /* GyroCell.swift in Sources */,
 				26BDBF9B2A37352D00385C5F /* Date++Extension.swift in Sources */,
@@ -403,6 +407,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 58JZ3489C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GyroData/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -415,7 +420,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.yagom.GyroData;
+				PRODUCT_BUNDLE_IDENTIFIER = com.minsu.GyroData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -430,6 +435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 58JZ3489C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GyroData/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -442,7 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.yagom.GyroData;
+				PRODUCT_BUNDLE_IDENTIFIER = com.minsu.GyroData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
