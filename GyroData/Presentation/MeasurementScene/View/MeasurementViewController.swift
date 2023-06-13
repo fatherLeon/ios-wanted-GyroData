@@ -16,6 +16,24 @@ final class MeasurementViewController: UIViewController {
         
         return control
     }()
+    private let startMeasurementButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("측정", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18)
+        
+        return button
+    }()
+    private let stopMeasurementButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("정지", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18)
+        
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +49,13 @@ extension MeasurementViewController {
     private func configureViewUI() {
         view.backgroundColor = .systemBackground
         
-        let mainStackView = UIStackView(arrangedSubviews: [segmentedControl])
+        let mainStackView = UIStackView(arrangedSubviews: [segmentedControl,
+                                                          startMeasurementButton,
+                                                          stopMeasurementButton])
         
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.axis = .vertical
+        mainStackView.spacing = 10
         
         view.addSubview(mainStackView)
         
