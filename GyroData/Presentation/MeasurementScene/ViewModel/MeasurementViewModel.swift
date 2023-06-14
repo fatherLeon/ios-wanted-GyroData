@@ -17,7 +17,7 @@ final class MeasurementViewModel {
     var cancellables: [AnyCancellable] = []
     
     init() {
-//        gyroManager.startAccelerometers()
+        bindingGyroManager()
     }
     
     func startMeasurementData(by type: GyroType) {

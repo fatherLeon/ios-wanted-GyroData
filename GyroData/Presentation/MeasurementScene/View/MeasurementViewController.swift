@@ -5,6 +5,7 @@
 //  Created by 강민수 on 2023/06/13.
 //
 
+import Combine
 import UIKit
 
 final class MeasurementViewController: UIViewController {
@@ -42,6 +43,7 @@ final class MeasurementViewController: UIViewController {
     }()
     
     private let viewModel = MeasurementViewModel()
+    private var cancellables: [AnyCancellable] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,17 @@ final class MeasurementViewController: UIViewController {
         configureViewUI()
         configureNavigationBarUI()
         configureButton()
+        
+        binding()
+    }
+    
+    private func binding() {
+        viewModel.$gyroData
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] gyroData in
+                self?.graphView.updateView(x: gyroData.x, y: gyroData.y, z: gyroData.z)
+            }
+            .store(in: &cancellables)
     }
 
     @objc private func didTapMeasurementButton() {
