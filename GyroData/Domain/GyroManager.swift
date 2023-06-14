@@ -18,8 +18,10 @@ final class GyroManager {
         motionManager.startAccelerometerUpdates()
         
         let timer = Timer(fire: Date(), interval: interval, repeats: true, block: { [weak self] _ in
-            let data = self?.motionManager.accelerometerData
-            print(data)
+            let data = self?.motionManager.accelerometerData?.acceleration
+            print(data?.x)
+            print(data?.y)
+            print(data?.z)
         })
         
         self.timer = timer
@@ -38,8 +40,8 @@ final class GyroManager {
         motionManager.startGyroUpdates()
         
         let timer = Timer(fire: Date(), interval: interval, repeats: true) { [weak self] _ in
-            let data = self?.motionManager.gyroData
-            print(data)
+            let data = self?.motionManager.gyroData?.rotationRate
+            print(data?.x)
         }
         
         self.timer = timer

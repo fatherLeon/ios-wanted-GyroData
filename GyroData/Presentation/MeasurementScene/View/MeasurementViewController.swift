@@ -10,9 +10,10 @@ import UIKit
 final class MeasurementViewController: UIViewController {
     
     private let segmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["Acc", "Gyro"])
+        let control = UISegmentedControl(items: [GyroType.Accelerometer.text, GyroType.Gyro.text])
         
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.selectedSegmentIndex = 0
         
         return control
     }()
@@ -42,8 +43,33 @@ final class MeasurementViewController: UIViewController {
         
         configureViewUI()
         configureNavigationBarUI()
+        configureButton()
     }
 
+    @objc private func didTapMeasurementButton() {
+        let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
+        
+        viewModel.startMeasurementData(by: type)
+        segmentedControl.isEnabled = false
+        startMeasurementButton.isEnabled = false
+        stopMeasurementButton.isEnabled = true
+    }
+    
+    @objc private func didTapStopMeasurementButton() {
+        let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
+        
+        viewModel.stopMeasurementData(by: type)
+        segmentedControl.isEnabled = true
+        startMeasurementButton.isEnabled = true
+        stopMeasurementButton.isEnabled = false
+    }
+}
+
+extension MeasurementViewController {
+    private func configureButton() {
+        startMeasurementButton.addTarget(self, action: #selector(didTapMeasurementButton), for: .touchUpInside)
+        stopMeasurementButton.addTarget(self, action: #selector(didTapStopMeasurementButton), for: .touchUpInside)
+    }
 }
 
 // MARK: UI

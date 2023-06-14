@@ -8,6 +8,31 @@
 import UIKit
 
 class GraphView: UIView {
+    
+    private let xLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemRed
+        
+        return label
+    }()
+    private let yLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemGreen
+        
+        return label
+    }()
+    private let zLabel: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemBlue
+        
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,5 +45,4 @@ class GraphView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
-    
 }

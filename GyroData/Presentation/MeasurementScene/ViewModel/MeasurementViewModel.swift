@@ -11,6 +11,24 @@ final class MeasurementViewModel {
     private let gyroManager = GyroManager()
     
     init() {
-        gyroManager.startAccelerometers()
+//        gyroManager.startAccelerometers()
+    }
+    
+    func startMeasurementData(by type: GyroType) {
+        switch type {
+        case .Gyro:
+            gyroManager.startGyro()
+        case .Accelerometer:
+            gyroManager.startAccelerometers()
+        }
+    }
+    
+    func stopMeasurementData(by type: GyroType) {
+        switch type {
+        case .Gyro:
+            gyroManager.stopGyro()
+        case .Accelerometer:
+            gyroManager.stopAccelerometers()
+        }
     }
 }
