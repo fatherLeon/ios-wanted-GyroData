@@ -13,8 +13,9 @@ final class MeasurementViewModel {
     private let gyroManager = GyroManager()
     
     @Published var gyroData: (x: Double, y: Double, z: Double) = (0.0, 0.0, 0.0)
-    var gyroDatas: [(Double, Double, Double)] = []
-    var cancellables: [AnyCancellable] = []
+    @Published var isMeasurement: Bool = false
+    var gyroDatas: [(x: Double, y: Double, z: Double)] = []
+    var cancelables: [AnyCancellable] = []
     
     init() {
         bindingGyroManager()
@@ -27,6 +28,8 @@ final class MeasurementViewModel {
         case .Accelerometer:
             gyroManager.startAccelerometers()
         }
+        
+        isMeasurement = true
     }
     
     func stopMeasurementData(by type: GyroType) {
@@ -36,6 +39,8 @@ final class MeasurementViewModel {
         case .Accelerometer:
             gyroManager.stopAccelerometers()
         }
+        
+        isMeasurement = false
     }
     
     private func bindingGyroManager() {
@@ -45,6 +50,6 @@ final class MeasurementViewModel {
                 self?.gyroDatas.append(data)
                 self?.gyroData = data
             }
-            .store(in: &cancellables)
+            .store(in: &cancelables)
     }
 }

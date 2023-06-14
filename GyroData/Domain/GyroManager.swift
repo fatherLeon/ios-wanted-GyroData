@@ -19,7 +19,7 @@ final class GyroManager {
         motionManager.accelerometerUpdateInterval = interval
         motionManager.startAccelerometerUpdates()
         
-        let timer = Timer(fire: .now, interval: interval, repeats: true, block: { [weak self] _ in
+        let timer = Timer(fire: Date(), interval: interval, repeats: true, block: { [weak self] _ in
             guard let data = self?.motionManager.accelerometerData?.acceleration else { return }
             self?.data = (data.x, data.y, data.z)
         })
@@ -39,7 +39,7 @@ final class GyroManager {
         motionManager.gyroUpdateInterval = interval
         motionManager.startGyroUpdates()
         
-        let timer = Timer(fire: .now, interval: interval, repeats: true) { [weak self] _ in
+        let timer = Timer(fire: Date(), interval: interval, repeats: true) { [weak self] _ in
             guard let data = self?.motionManager.gyroData?.rotationRate else { return }
             self?.data = (data.x, data.y, data.z)
         }

@@ -43,7 +43,7 @@ final class MeasurementViewController: UIViewController {
     }()
     
     private let viewModel = MeasurementViewModel()
-    private var cancellables: [AnyCancellable] = []
+    private var cancelables: [AnyCancellable] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,25 +61,28 @@ final class MeasurementViewController: UIViewController {
             .sink { [weak self] gyroData in
                 self?.graphView.updateView(x: gyroData.x, y: gyroData.y, z: gyroData.z)
             }
-            .store(in: &cancellables)
+            .store(in: &cancelables)
+        
+        viewModel.$isMeasurement
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isPlaying in
+                self?.segmentedControl.isEnabled = !isPlaying
+                self?.startMeasurementButton.isEnabled = !isPlaying
+                self?.stopMeasurementButton.isEnabled = isPlaying
+            }
+            .store(in: &cancelables)
     }
 
     @objc private func didTapMeasurementButton() {
         let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
         viewModel.startMeasurementData(by: type)
-        segmentedControl.isEnabled = false
-        startMeasurementButton.isEnabled = false
-        stopMeasurementButton.isEnabled = true
     }
     
     @objc private func didTapStopMeasurementButton() {
         let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
         viewModel.stopMeasurementData(by: type)
-        segmentedControl.isEnabled = true
-        startMeasurementButton.isEnabled = true
-        stopMeasurementButton.isEnabled = false
     }
 }
 
