@@ -51,5 +51,12 @@ final class MeasurementViewModel {
                 self?.gyroData = data
             }
             .store(in: &cancelables)
+        
+        gyroManager.$isMeasurement
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                self?.isMeasurement = data
+            }
+            .store(in: &cancelables)
     }
 }
