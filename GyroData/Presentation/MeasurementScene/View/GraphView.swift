@@ -49,6 +49,41 @@ final class GraphView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        layer.borderColor = UIColor.label.cgColor
+        layer.borderWidth = 2.5
+        
+        UIColor.systemBackground.setFill()
+        
+        let path = UIBezierPath(rect: rect)
+        path.fill()
+        path.close()
+        
+        let widthPath = UIBezierPath()
+        widthPath.lineWidth = 0.7
+        let heightDiff = rect.height / 6
+        
+        for height in 0..<6 {
+            widthPath.move(to: CGPoint(x: 0, y: CGFloat(height) * heightDiff))
+            widthPath.addLine(to: CGPoint(x: rect.width, y: CGFloat(height) * heightDiff))
+            
+            widthPath.stroke()
+        }
+
+        widthPath.close()
+        
+        let heightPath = UIBezierPath()
+        heightPath.lineWidth = 0.7
+        let widthDiff = rect.width / 6
+        
+        for width in 0..<6 {
+            heightPath.move(to: CGPoint(x: CGFloat(width) * widthDiff, y: 0))
+            heightPath.addLine(to: CGPoint(x: CGFloat(width) * widthDiff, y: rect.width))
+            
+            heightPath.stroke()
+        }
+        
+        heightPath.close()
     }
     
     func updateView(x: Double, y: Double, z: Double) {
