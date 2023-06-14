@@ -13,7 +13,8 @@ final class GraphView: UIView {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
+        label.textAlignment = .center
+        label.text = "x : 0"
         label.textColor = .systemRed
         
         return label
@@ -22,7 +23,8 @@ final class GraphView: UIView {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
+        label.textAlignment = .center
+        label.text = "y : 0"
         label.textColor = .systemGreen
         
         return label
@@ -31,11 +33,18 @@ final class GraphView: UIView {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
+        label.textAlignment = .center
+        label.text = "z : 0"
         label.textColor = .systemBlue
         
         return label
     }()
+    
+    private var xLayer: CALayer?
+    private var yLayer: CALayer?
+    private var zLayer: CALayer?
+    
+    private var graphDatas: [(x: Double, y: Double, z: Double)] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,6 +68,87 @@ final class GraphView: UIView {
         path.fill()
         path.close()
         
+        drawWidthLineInGraphBackground(rect)
+        drawHeightLineInGraphBackground(rect)
+        drawGraph(rect)
+    }
+    
+    func updateView(x: Double, y: Double, z: Double) {
+        xLabel.text = "x : " + String(format: "%.2f", x)
+        yLabel.text = "y : " + String(format: "%.2f", y)
+        zLabel.text = "z : " + String(format: "%.2f", z)
+        
+        graphDatas.append((x, y, z))
+        self.setNeedsDisplay()
+    }
+}
+
+// MARK: Drawing
+extension GraphView {
+    private func drawGraph(_ rect: CGRect) {
+        drawXGraph(rect)
+        drawYGraph(rect)
+        drawZGraph(rect)
+    }
+    
+    private func drawXGraph(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        let widthDiff = rect.width / 360
+        let centerHeight = rect.height / 2
+        
+        context.beginPath()
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.systemRed.cgColor)
+        
+        context.move(to: CGPoint(x: 0, y: centerHeight))
+
+        for (index, data) in graphDatas.enumerated() {
+            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.x * 20))
+        }
+        
+        context.drawPath(using: .stroke)
+        context.closePath()
+    }
+    
+    private func drawYGraph(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        let widthDiff = rect.width / 360
+        let centerHeight = rect.height / 2
+        
+        context.beginPath()
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.systemGreen.cgColor)
+        
+        context.move(to: CGPoint(x: 0, y: centerHeight))
+
+        for (index, data) in graphDatas.enumerated() {
+            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.y * 20))
+        }
+        
+        context.drawPath(using: .stroke)
+        context.closePath()
+    }
+    
+    private func drawZGraph(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        let widthDiff = rect.width / 360
+        let centerHeight = rect.height / 2
+        
+        context.beginPath()
+        context.setLineWidth(1.0)
+        context.setStrokeColor(UIColor.systemBlue.cgColor)
+        
+        context.move(to: CGPoint(x: 0, y: centerHeight))
+
+        for (index, data) in graphDatas.enumerated() {
+            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.z * 20))
+        }
+        
+        context.drawPath(using: .stroke)
+        context.closePath()
+    }
+    
+    private func drawWidthLineInGraphBackground(_ rect: CGRect) {
         let widthPath = UIBezierPath()
         widthPath.lineWidth = 0.7
         let heightDiff = rect.height / 6
@@ -71,7 +161,9 @@ final class GraphView: UIView {
         }
 
         widthPath.close()
-        
+    }
+    
+    private func drawHeightLineInGraphBackground(_ rect: CGRect) {
         let heightPath = UIBezierPath()
         heightPath.lineWidth = 0.7
         let widthDiff = rect.width / 6
@@ -85,28 +177,24 @@ final class GraphView: UIView {
         
         heightPath.close()
     }
-    
-    func updateView(x: Double, y: Double, z: Double) {
-        xLabel.text = String(format: "%.2f", x)
-        yLabel.text = String(format: "%.2f", y)
-        zLabel.text = String(format: "%.2f", z)
-    }
 }
 
+// MARK: UI
 extension GraphView {
     private func configureViewUI() {
         let mainStackView = UIStackView(arrangedSubviews: [xLabel, yLabel, zLabel])
         
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.axis = .vertical
+        mainStackView.axis = .horizontal
+        mainStackView.alignment = .center
+        mainStackView.distribution = .fillEqually
         
         self.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            mainStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10)
         ])
     }
 }
