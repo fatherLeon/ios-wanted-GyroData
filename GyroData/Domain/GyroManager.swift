@@ -15,16 +15,21 @@ final class GyroManager {
     private var timer: Timer?
     private var timeoutTimer: Timer?
     private let motionManager = CMMotionManager()
-    private let interval = 1.0 / 60.0 * 10.0
-    private let timeout = 60.0
+    private let interval = 1.0 / 10.0
+    private var timeout = 0
     
     func startAccelerometers() {
         motionManager.accelerometerUpdateInterval = interval
         motionManager.startAccelerometerUpdates()
         isMeasurement = true
         
-        let timeoutTimer = Timer(timeInterval: timeout, repeats: false) { [weak self] _ in
-            self?.stopAccelerometers()
+        let timeoutTimer = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.timeout += 1
+            if self.timeout > 60 {
+                self.stopAccelerometers()
+                self.resetTimeout()
+            }
         }
         let timer = Timer(fire: Date(), interval: interval, repeats: true, block: { [weak self] _ in
             guard let data = self?.motionManager.accelerometerData?.acceleration else { return }
@@ -52,8 +57,13 @@ final class GyroManager {
         motionManager.startGyroUpdates()
         isMeasurement = true
         
-        let timeoutTimer = Timer(timeInterval: timeout, repeats: false) { [weak self] _ in
-            self?.stopGyro()
+        let timeoutTimer = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.timeout += 1
+            if self.timeout > 60 {
+                self.stopGyro()
+                self.resetTimeout()
+            }
         }
         let timer = Timer(fire: Date(), interval: interval, repeats: true) { [weak self] _ in
             guard let data = self?.motionManager.gyroData?.rotationRate else { return }
@@ -74,5 +84,9 @@ final class GyroManager {
         timeoutTimer?.invalidate()
         timer = nil
         timeoutTimer = nil
+    }
+    
+    private func resetTimeout() {
+        timeout = 0
     }
 }

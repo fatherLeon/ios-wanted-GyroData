@@ -40,11 +40,8 @@ final class GraphView: UIView {
         return label
     }()
     
-    private var xLayer: CALayer?
-    private var yLayer: CALayer?
-    private var zLayer: CALayer?
-    
     private var graphDatas: [(x: Double, y: Double, z: Double)] = []
+    private var xAxis: CGFloat = 600
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,7 +90,7 @@ extension GraphView {
     
     private func drawXGraph(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        let widthDiff = rect.width / 360
+        let widthDiff = rect.width / xAxis
         let centerHeight = rect.height / 2
         
         context.beginPath()
@@ -112,7 +109,7 @@ extension GraphView {
     
     private func drawYGraph(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        let widthDiff = rect.width / 360
+        let widthDiff = rect.width / xAxis
         let centerHeight = rect.height / 2
         
         context.beginPath()
@@ -131,7 +128,7 @@ extension GraphView {
     
     private func drawZGraph(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        let widthDiff = rect.width / 360
+        let widthDiff = rect.width / xAxis
         let centerHeight = rect.height / 2
         
         context.beginPath()
