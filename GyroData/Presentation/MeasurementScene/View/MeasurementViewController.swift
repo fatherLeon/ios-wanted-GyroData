@@ -35,6 +35,11 @@ final class MeasurementViewController: UIViewController {
         
         return button
     }()
+    private let graphView = {
+        let view = GraphView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private let viewModel = MeasurementViewModel()
 
@@ -78,6 +83,7 @@ extension MeasurementViewController {
         view.backgroundColor = .systemBackground
         
         let mainStackView = UIStackView(arrangedSubviews: [segmentedControl,
+                                                           graphView,
                                                           startMeasurementButton,
                                                           stopMeasurementButton])
         
@@ -91,7 +97,7 @@ extension MeasurementViewController {
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

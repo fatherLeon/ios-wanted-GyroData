@@ -7,12 +7,13 @@
 
 import UIKit
 
-class GraphView: UIView {
+final class GraphView: UIView {
     
     private let xLabel: UILabel = {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
         label.textColor = .systemRed
         
         return label
@@ -21,6 +22,7 @@ class GraphView: UIView {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
         label.textColor = .systemGreen
         
         return label
@@ -29,6 +31,7 @@ class GraphView: UIView {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0"
         label.textColor = .systemBlue
         
         return label
@@ -36,6 +39,8 @@ class GraphView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        configureViewUI()
     }
     
     required init?(coder: NSCoder) {
@@ -44,5 +49,23 @@ class GraphView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+    }
+}
+
+extension GraphView {
+    private func configureViewUI() {
+        let mainStackView = UIStackView(arrangedSubviews: [xLabel, yLabel, zLabel])
+        
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.axis = .vertical
+        
+        self.addSubview(mainStackView)
+        
+        NSLayoutConstraint.activate([
+            mainStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
 }
