@@ -42,6 +42,7 @@ final class GraphView: UIView {
     
     private var graphDatas: [(x: Double, y: Double, z: Double)] = []
     private var xAxis: CGFloat = 600
+    private var yScale: CGFloat = 10
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,6 +77,13 @@ final class GraphView: UIView {
         zLabel.text = "z : " + String(format: "%.2f", z)
         
         graphDatas.append((x, y, z))
+        
+        let maxValue: CGFloat = max(x, y, z)
+        
+        if maxValue * yScale > 100 {
+            yScale = 100 / maxValue
+        }
+        
         self.setNeedsDisplay()
     }
 }
@@ -100,7 +108,7 @@ extension GraphView {
         context.move(to: CGPoint(x: 0, y: centerHeight))
 
         for (index, data) in graphDatas.enumerated() {
-            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.x * 20))
+            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.x * yScale))
         }
         
         context.drawPath(using: .stroke)
@@ -119,7 +127,7 @@ extension GraphView {
         context.move(to: CGPoint(x: 0, y: centerHeight))
 
         for (index, data) in graphDatas.enumerated() {
-            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.y * 20))
+            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.y * yScale))
         }
         
         context.drawPath(using: .stroke)
@@ -138,7 +146,7 @@ extension GraphView {
         context.move(to: CGPoint(x: 0, y: centerHeight))
 
         for (index, data) in graphDatas.enumerated() {
-            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.z * 20))
+            context.addLine(to: CGPoint(x: widthDiff * CGFloat(index), y: centerHeight + data.z * yScale))
         }
         
         context.drawPath(using: .stroke)
