@@ -50,6 +50,12 @@ final class GraphView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
+    
+    func updateView(x: Double, y: Double, z: Double) {
+        xLabel.text = String(format: "%.2f", x)
+        yLabel.text = String(format: "%.2f", y)
+        zLabel.text = String(format: "%.2f", z)
+    }
 }
 
 extension GraphView {

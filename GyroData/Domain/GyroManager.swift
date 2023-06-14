@@ -9,6 +9,8 @@ import Foundation
 import CoreMotion
 
 final class GyroManager {
+    @Published var data: (x: Double, y: Double, z: Double) = (0.0, 0.0, 0.0)
+    
     private var timer: Timer?
     private let motionManager = CMMotionManager()
     private let interval = 1.0 / 60.0 * 10.0
@@ -18,10 +20,8 @@ final class GyroManager {
         motionManager.startAccelerometerUpdates()
         
         let timer = Timer(fire: Date(), interval: interval, repeats: true, block: { [weak self] _ in
-            let data = self?.motionManager.accelerometerData?.acceleration
-            print(data?.x)
-            print(data?.y)
-            print(data?.z)
+            guard let data = self?.motionManager.accelerometerData?.acceleration else { return }
+            self?.data = (data.x, data.y, data.z)
         })
         
         self.timer = timer
@@ -40,8 +40,8 @@ final class GyroManager {
         motionManager.startGyroUpdates()
         
         let timer = Timer(fire: Date(), interval: interval, repeats: true) { [weak self] _ in
-            let data = self?.motionManager.gyroData?.rotationRate
-            print(data?.x)
+            guard let data = self?.motionManager.gyroData?.rotationRate else { return }
+            self?.data = (data.x, data.y, data.z)
         }
         
         self.timer = timer
