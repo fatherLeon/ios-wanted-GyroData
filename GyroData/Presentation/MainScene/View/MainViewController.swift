@@ -37,6 +37,12 @@ final class MainViewController: UIViewController {
         binding()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.searchData()
+    }
+    
     private func binding() {
         viewModel.$gyros
             .receive(on: DispatchQueue.main)
@@ -92,7 +98,7 @@ extension MainViewController {
             let ySumValue = itemIdentifier.yValue.reduce(0, +)
             let zSumValue = itemIdentifier.zValue.reduce(0, +)
             
-            let averageValue = (xSumValue + ySumValue + zSumValue) / Double(itemIdentifier.xValue.count)
+            let averageValue = (xSumValue + ySumValue + zSumValue) / 3
             
             cell.apply(by: itemIdentifier.date,
                        type: itemIdentifier.type.text,

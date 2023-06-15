@@ -13,10 +13,6 @@ final class MainViewModel {
     @Published var gyros: [Gyro] = []
     var cancellables: [AnyCancellable] = []
     
-    init() {
-        searchData()
-    }
-    
     func deleteGyro(_ gyro: Gyro) {
         guard let index = gyros.firstIndex(of: gyro),
               let targetURL = coredataManager.search(by: gyro.id)?.url else { return }
@@ -27,7 +23,8 @@ final class MainViewModel {
         gyros.remove(at: index)
     }
     
-    private func searchData() {
+    func searchData() {
+        gyros = []
         let gyroInfos = coredataManager.read()
         
         gyroInfos.forEach { info in
@@ -36,6 +33,10 @@ final class MainViewModel {
                   let decodingData = try? JSONDecoder().decode(Gyro.self, from: data) else { return }
             
             self.gyros.append(decodingData)
+        }
+        
+        gyros.sort { lhs, rhs in
+            return lhs.date > rhs.date
         }
     }
 }

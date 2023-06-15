@@ -8,7 +8,7 @@
 import Foundation
 
 struct Gyro: Codable, Hashable {
-    let id: UUID
+    let id: UUID = UUID()
     let date: Date
     let type: GyroType
     var xValue: [Double] = []

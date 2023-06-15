@@ -96,6 +96,8 @@ final class MeasurementViewController: UIViewController {
         let type: Gyro.GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
         viewModel.saveMeasurementData(by: type)
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 

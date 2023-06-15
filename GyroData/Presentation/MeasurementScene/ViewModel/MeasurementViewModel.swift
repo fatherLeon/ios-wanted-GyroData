@@ -46,7 +46,7 @@ final class MeasurementViewModel {
     }
     
     func saveMeasurementData(by type: Gyro.GyroType) {
-        var gyro = Gyro(id: UUID(), date: Date(), type: type)
+        var gyro = Gyro(date: Date(), type: type)
         
         gyroDatas.forEach { gyroData in
             gyro.xValue.append(gyroData.x)
