@@ -48,7 +48,12 @@ final class MeasurementViewModel {
     func saveMeasurementData(by type: Gyro.GyroType) {
         var gyro = Gyro(id: UUID(), date: Date(), type: type)
         
-        
+        gyroDatas.forEach { gyroData in
+            gyro.xValue.append(gyroData.x)
+            gyro.yValue.append(gyroData.y)
+            gyro.yValue.append(gyroData.z)
+        }
+
         guard let fileURL = LocalFileURLs.receiveURL(by: gyro.id.uuidString) else { return }
         
         do {

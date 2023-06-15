@@ -51,6 +51,16 @@ final class CoreDataManager {
         }
     }
     
+    func search(by id: UUID) -> GyroInfo? {
+        let request = GyroInfo.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+        
+        guard let searchedData = try? context.fetch(request).first else { return nil }
+        
+        return searchedData
+    }
+    
     func delete(id: UUID) {
         let fetchedResult = read()
         

@@ -14,6 +14,7 @@ final class MainViewModel {
     var cancellables: [AnyCancellable] = []
     
     init() {
+        searchData()
     }
     
     func deleteGyro(_ gyro: Gyro) {
