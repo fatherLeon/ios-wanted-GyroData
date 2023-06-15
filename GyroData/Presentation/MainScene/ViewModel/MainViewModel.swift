@@ -9,20 +9,28 @@ import Combine
 import Foundation
 
 final class MainViewModel {
+    private let coredataManager = CoreDataManager()
     @Published var gyros: [Gyro] = []
     var cancellables: [AnyCancellable] = []
     
     init() {
-        let data = [Gyro(date: Date(), type: .Accelerometer, value: [(1, 2, 1)]),
-                    Gyro(date: Date(), type: .Gyro, value: [(2, 3, 4)]),
-                    Gyro(date: Date(), type: .Accelerometer, value: [(3, 1, 0)])]
-        
-        self.gyros = data
     }
     
     func deleteGyro(_ gyro: Gyro) {
         guard let index = gyros.firstIndex(of: gyro) else { return }
         
         gyros.remove(at: index)
+    }
+    
+    private func searchData() {
+        let gyroInfos = coredataManager.read()
+        
+        gyroInfos.forEach { info in
+            guard let url = info.url,
+                  let data = try? Data(contentsOf: url),
+                  let decodingData = try? JSONDecoder().decode(Gyro.self, from: data) else { return }
+            
+            self.gyros.append(decodingData)
+        }
     }
 }

@@ -23,7 +23,7 @@ final class MeasurementViewModel {
         bindingGyroManager()
     }
     
-    func startMeasurementData(by type: GyroType) {
+    func startMeasurementData(by type: Gyro.GyroType) {
         switch type {
         case .Gyro:
             gyroManager.startGyro()
@@ -34,7 +34,7 @@ final class MeasurementViewModel {
         isMeasurement = true
     }
     
-    func stopMeasurementData(by type: GyroType) {
+    func stopMeasurementData(by type: Gyro.GyroType) {
         switch type {
         case .Gyro:
             gyroManager.stopGyro()
@@ -45,28 +45,16 @@ final class MeasurementViewModel {
         isMeasurement = false
     }
     
-    func saveMeasurementData(by type: GyroType) {
-        var gyro = Gyro(date: Date(), type: type)
+    func saveMeasurementData(by type: Gyro.GyroType) {
+        var gyro = Gyro(id: UUID(), date: Date(), type: type)
+        
         
         guard let fileURL = LocalFileURLs.receiveURL(by: gyro.id.uuidString) else { return }
         
-        gyro.value = gyroDatas
-        
-        let xValue = gyro.value.map { $0.x }
-        let yValue = gyro.value.map { $0.y }
-        let zValue = gyro.value.map { $0.z }
-        
-        let jsonGyro = JsonGyroModel(id: gyro.id,
-                                     date: gyro.date,
-                                     type: type.text,
-                                     xValue: xValue,
-                                     yValue: yValue,
-                                     zValue: zValue)
-        
         do {
-            let data = try JSONEncoder().encode(jsonGyro)
+            let data = try JSONEncoder().encode(gyro)
             try data.write(to: fileURL)
-            coredataManager.create(id: jsonGyro.id, url: fileURL)
+            coredataManager.create(id: gyro.id, url: fileURL)
         } catch {
             return
         }

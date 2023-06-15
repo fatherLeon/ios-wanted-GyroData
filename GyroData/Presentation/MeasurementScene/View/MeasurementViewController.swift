@@ -11,7 +11,7 @@ import UIKit
 final class MeasurementViewController: UIViewController {
     
     private let segmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: [GyroType.Accelerometer.text, GyroType.Gyro.text])
+        let control = UISegmentedControl(items: [Gyro.GyroType.Accelerometer.text, Gyro.GyroType.Gyro.text])
         
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 0
@@ -81,19 +81,19 @@ final class MeasurementViewController: UIViewController {
     }
 
     @objc private func didTapMeasurementButton() {
-        let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
+        let type: Gyro.GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
         viewModel.startMeasurementData(by: type)
     }
     
     @objc private func didTapStopMeasurementButton() {
-        let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
+        let type: Gyro.GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
         viewModel.stopMeasurementData(by: type)
     }
     
     @objc private func didTapStoreButton() {
-        let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
+        let type: Gyro.GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
         viewModel.saveMeasurementData(by: type)
     }
