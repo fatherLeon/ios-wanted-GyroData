@@ -44,6 +44,30 @@ final class MeasurementViewModel {
         isMeasurement = false
     }
     
+    func saveMeasurementData(by type: GyroType) {
+        var gyro = Gyro(date: Date(), type: type)
+        
+        gyro.value = gyroDatas
+        
+        let xValue = gyro.value.map { $0.x }
+        let yValue = gyro.value.map { $0.y }
+        let zValue = gyro.value.map { $0.z }
+        
+        let jsonGyro = JsonGyroModel(id: gyro.id,
+                                     date: gyro.date,
+                                     type: type.text,
+                                     xValue: xValue,
+                                     yValue: yValue,
+                                     zValue: zValue)
+        
+        do {
+            let data = JSONEncoder().encode(jsonGyro)
+        } catch {
+            
+        }
+        
+    }
+    
     private func bindingGyroManager() {
         gyroManager.$data
             .receive(on: DispatchQueue.main)

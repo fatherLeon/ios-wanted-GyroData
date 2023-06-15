@@ -13,6 +13,7 @@
 		261B4AB02A3AE4A400F06D4D /* GyroInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B4AAE2A3AE4A400F06D4D /* GyroInfo+CoreDataProperties.swift */; };
 		261B4AB32A3AE8B900F06D4D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B4AB22A3AE8B900F06D4D /* CoreDataManager.swift */; };
 		261B4AB92A3AF59D00F06D4D /* JsonGyroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B4AB82A3AF59D00F06D4D /* JsonGyroModel.swift */; };
+		261B4ABB2A3AFA6300F06D4D /* LocalFileURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261B4ABA2A3AFA6300F06D4D /* LocalFileURLs.swift */; };
 		26BDBF972A37346A00385C5F /* GyroType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDBF962A37346A00385C5F /* GyroType.swift */; };
 		26BDBF992A37347100385C5F /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDBF982A37347100385C5F /* Gyro.swift */; };
 		26BDBF9B2A37352D00385C5F /* Date++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDBF9A2A37352D00385C5F /* Date++Extension.swift */; };
@@ -35,6 +36,7 @@
 		261B4AAE2A3AE4A400F06D4D /* GyroInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GyroInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		261B4AB22A3AE8B900F06D4D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		261B4AB82A3AF59D00F06D4D /* JsonGyroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonGyroModel.swift; sourceTree = "<group>"; };
+		261B4ABA2A3AFA6300F06D4D /* LocalFileURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileURLs.swift; sourceTree = "<group>"; };
 		26BDBF962A37346A00385C5F /* GyroType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroType.swift; sourceTree = "<group>"; };
 		26BDBF982A37347100385C5F /* Gyro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 		26BDBF9A2A37352D00385C5F /* Date++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date++Extension.swift"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				261B4AB12A3AE4EC00F06D4D /* CoreData */,
 				26FDAF742A385C6A00B1F37D /* GyroManager.swift */,
+				261B4ABA2A3AFA6300F06D4D /* LocalFileURLs.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				261B4AB92A3AF59D00F06D4D /* JsonGyroModel.swift in Sources */,
+				261B4ABB2A3AFA6300F06D4D /* LocalFileURLs.swift in Sources */,
 				26BDBF972A37346A00385C5F /* GyroType.swift in Sources */,
 				63F01BB928D44FC400C53A39 /* MainViewController.swift in Sources */,
 				26FDAF6D2A384A1300B1F37D /* MeasurementViewController.swift in Sources */,
