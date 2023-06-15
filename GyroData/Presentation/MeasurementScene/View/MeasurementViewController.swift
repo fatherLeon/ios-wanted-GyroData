@@ -95,9 +95,12 @@ final class MeasurementViewController: UIViewController {
     @objc private func didTapStoreButton() {
         let type: Gyro.GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
         
-        viewModel.saveMeasurementData(by: type)
-        
-        navigationController?.popViewController(animated: true)
+        do {
+            try viewModel.saveMeasurementData(by: type)
+            navigationController?.popViewController(animated: true)
+        } catch {
+            showErrorAlertController(error)
+        }
     }
 }
 

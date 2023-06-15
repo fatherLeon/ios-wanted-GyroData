@@ -45,23 +45,29 @@ final class MeasurementViewModel {
         isMeasurement = false
     }
     
-    func saveMeasurementData(by type: Gyro.GyroType) {
+    func saveMeasurementData(by type: Gyro.GyroType) throws {
         var gyro = Gyro(date: Date(), type: type)
+        
+        guard let fileURL = LocalFileURLs.receiveURL(by: gyro.id.uuidString) else {
+            throw DatabaseError.nonCorrectURL
+        }
+        
+        guard gyroDatas.count > 0 else {
+            throw DatabaseError.nonGyroData
+        }
         
         gyroDatas.forEach { gyroData in
             gyro.xValue.append(gyroData.x)
             gyro.yValue.append(gyroData.y)
             gyro.yValue.append(gyroData.z)
         }
-
-        guard let fileURL = LocalFileURLs.receiveURL(by: gyro.id.uuidString) else { return }
         
         do {
             let data = try JSONEncoder().encode(gyro)
             try data.write(to: fileURL)
             coredataManager.create(id: gyro.id, url: fileURL)
         } catch {
-            return
+            throw DatabaseError.saveError
         }
         
     }
