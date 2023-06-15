@@ -88,9 +88,8 @@ extension MainViewController {
         datasource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: GyroCell.identifier) as? GyroCell else { return UITableViewCell() }
             
-            let sumValue = itemIdentifier.value.reduce(0) { partialResult, data in
+            let sumValue = itemIdentifier.value.reduce(0.0) { partialResult, data in
                 let sum = data.x + data.y + data.z
-                
                 return partialResult + sum
             }
             let averageValue = sumValue / Double(itemIdentifier.value.count)
