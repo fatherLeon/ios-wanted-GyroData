@@ -11,6 +11,7 @@ import CoreMotion
 
 final class MeasurementViewModel {
     private let gyroManager = GyroManager()
+    private let coredataManager = CoreDataManager()
     private var gyroDatas: [(x: Double, y: Double, z: Double)] = []
     var cancelables: [AnyCancellable] = []
     
@@ -47,6 +48,8 @@ final class MeasurementViewModel {
     func saveMeasurementData(by type: GyroType) {
         var gyro = Gyro(date: Date(), type: type)
         
+        guard let fileURL = LocalFileURLs.receiveURL(by: gyro.id.uuidString) else { return }
+        
         gyro.value = gyroDatas
         
         let xValue = gyro.value.map { $0.x }
@@ -61,9 +64,11 @@ final class MeasurementViewModel {
                                      zValue: zValue)
         
         do {
-            let data = JSONEncoder().encode(jsonGyro)
+            let data = try JSONEncoder().encode(jsonGyro)
+            try data.write(to: fileURL)
+            coredataManager.create(id: jsonGyro.id, url: fileURL)
         } catch {
-            
+            return
         }
         
     }

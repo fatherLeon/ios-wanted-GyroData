@@ -14,7 +14,7 @@ enum LocalFileURLs {
         return fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
     }
     
-    static func receiveVideoURL(by title: String) -> URL? {
+    static func receiveURL(by title: String) -> URL? {
         guard let baseURL = fileURL else { return nil }
         
         let url = baseURL.appendingPathComponent(title)
@@ -23,7 +23,7 @@ enum LocalFileURLs {
     }
     
     @discardableResult
-    static func removeVideo(by url: URL) -> Bool {
+    static func remove(by url: URL) -> Bool {
         do {
             try fileManager.removeItem(at: url)
             return true

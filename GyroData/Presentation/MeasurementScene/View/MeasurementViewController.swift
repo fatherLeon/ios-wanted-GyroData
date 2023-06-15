@@ -91,6 +91,12 @@ final class MeasurementViewController: UIViewController {
         
         viewModel.stopMeasurementData(by: type)
     }
+    
+    @objc private func didTapStoreButton() {
+        let type: GyroType = segmentedControl.selectedSegmentIndex == 0 ? .Accelerometer : .Gyro
+        
+        viewModel.saveMeasurementData(by: type)
+    }
 }
 
 extension MeasurementViewController {
@@ -131,7 +137,7 @@ extension MeasurementViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장",
                                                             style: .plain,
                                                             target: self,
-                                                            action: nil)
+                                                            action: #selector(didTapStoreButton))
         navigationItem.backButtonTitle = ""
     }
 }
