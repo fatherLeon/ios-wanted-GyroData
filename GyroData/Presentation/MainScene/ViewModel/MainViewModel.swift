@@ -13,9 +13,9 @@ final class MainViewModel {
     var cancellables: [AnyCancellable] = []
     
     init() {
-        let data = [Gyro(date: Date(), type: .Accelerometer, value: 43.4),
-                    Gyro(date: Date(), type: .Gyro, value: 60.0),
-                    Gyro(date: Date(), type: .Accelerometer, value: 30.4)]
+        let data = [Gyro(date: Date(), type: .Accelerometer, value: [(1, 2, 1)]),
+                    Gyro(date: Date(), type: .Gyro, value: [(2, 3, 4)]),
+                    Gyro(date: Date(), type: .Accelerometer, value: [(3, 1, 0)])]
         
         self.gyros = data
     }

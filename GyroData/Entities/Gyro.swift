@@ -8,8 +8,16 @@
 import Foundation
 
 struct Gyro: Hashable {
+    static func == (lhs: Gyro, rhs: Gyro) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    var hashValue: Int {
+        return id.hashValue
+    }
+    
     let id = UUID()
     let date: Date
     let type: GyroType
-    let value: Double
+    var value: [(x: Double, y: Double, z: Double)] = []
 }
