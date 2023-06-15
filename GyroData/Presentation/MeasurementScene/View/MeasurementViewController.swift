@@ -66,9 +66,16 @@ final class MeasurementViewController: UIViewController {
         viewModel.$isMeasurement
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isPlaying in
-                self?.segmentedControl.isEnabled = !isPlaying
                 self?.startMeasurementButton.isEnabled = !isPlaying
                 self?.stopMeasurementButton.isEnabled = isPlaying
+            }
+            .store(in: &cancelables)
+        
+        viewModel.$isChangedGyroType
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isChanged in
+                self?.segmentedControl.isEnabled = isChanged
+                self?.navigationItem.rightBarButtonItem?.isEnabled = isChanged
             }
             .store(in: &cancelables)
     }

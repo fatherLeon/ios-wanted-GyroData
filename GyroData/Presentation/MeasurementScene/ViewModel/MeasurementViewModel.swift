@@ -11,11 +11,12 @@ import CoreMotion
 
 final class MeasurementViewModel {
     private let gyroManager = GyroManager()
+    private var gyroDatas: [(x: Double, y: Double, z: Double)] = []
+    var cancelables: [AnyCancellable] = []
     
     @Published var gyroData: (x: Double, y: Double, z: Double) = (0.0, 0.0, 0.0)
     @Published var isMeasurement: Bool = false
-    var gyroDatas: [(x: Double, y: Double, z: Double)] = []
-    var cancelables: [AnyCancellable] = []
+    @Published var isChangedGyroType: Bool = true
     
     init() {
         bindingGyroManager()
@@ -56,6 +57,13 @@ final class MeasurementViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.isMeasurement = data
+            }
+            .store(in: &cancelables)
+        
+        gyroManager.$isChangedGyroType
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isChangedGyroType in
+                self?.isChangedGyroType = isChangedGyroType
             }
             .store(in: &cancelables)
     }

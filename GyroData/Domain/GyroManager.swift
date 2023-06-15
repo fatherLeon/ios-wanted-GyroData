@@ -11,6 +11,7 @@ import CoreMotion
 final class GyroManager {
     @Published var data: (x: Double, y: Double, z: Double) = (0.0, 0.0, 0.0)
     @Published var isMeasurement: Bool = false
+    @Published var isChangedGyroType: Bool = true
     
     private var timer: Timer?
     private var timeoutTimer: Timer?
@@ -22,6 +23,7 @@ final class GyroManager {
         motionManager.accelerometerUpdateInterval = interval
         motionManager.startAccelerometerUpdates()
         isMeasurement = true
+        isChangedGyroType = false
         
         let timeoutTimer = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
@@ -56,6 +58,7 @@ final class GyroManager {
         motionManager.gyroUpdateInterval = interval
         motionManager.startGyroUpdates()
         isMeasurement = true
+        isChangedGyroType = false
         
         let timeoutTimer = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
@@ -87,6 +90,7 @@ final class GyroManager {
     }
     
     private func resetTimeout() {
+        isChangedGyroType = true
         timeout = 0
     }
 }
