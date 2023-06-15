@@ -18,7 +18,11 @@ final class MainViewModel {
     }
     
     func deleteGyro(_ gyro: Gyro) {
-        guard let index = gyros.firstIndex(of: gyro) else { return }
+        guard let index = gyros.firstIndex(of: gyro),
+              let targetURL = coredataManager.search(by: gyro.id)?.url else { return }
+        
+        LocalFileURLs.remove(by: targetURL)
+        coredataManager.delete(id: gyro.id)
         
         gyros.remove(at: index)
     }
